@@ -1,6 +1,6 @@
 // import 'package:flutter/material.dart';
 // import 'package:flutter_bloc/flutter_bloc.dart';
-// import 'package:recipe_app/project/screens/cart.dart';
+// import 'package:recipe_app/project/screens/cart_screen.dart';
 // import 'package:recipe_app/project/screens/home_screen.dart';
 part of 'navbar_cuibt.dart';
 
