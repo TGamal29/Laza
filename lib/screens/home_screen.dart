@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:laza/cuibts/navbar_cuibt.dart';
+import 'package:laza/screens/nav_bar_screen.dart';
 import 'package:laza/widgets/category_card.dart';
 
 
@@ -11,9 +14,12 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: HomeScreen(),
+    return BlocProvider<NavBarCubit>(
+      create:(context)=> NavBarCubit(),
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        home: BottomNavBar(),
+      )
     );
   }
 }
