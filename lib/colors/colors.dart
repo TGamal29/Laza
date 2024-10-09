@@ -13,4 +13,4 @@ const google =   Color(0xFFEA4335);
 const switchBtn1 = Color(0xFFDEDBDB);
 const switchBtn2 = Color(0xFF34C759);
 const addReview = Color(0xFFFF7043);
-const star = Color(0xFFFF981F);
+const stars = Color(0xFFFF981F);
