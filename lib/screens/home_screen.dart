@@ -1,28 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:laza/cuibts/navbar_cuibt.dart';
+import 'package:laza/meram/cubits/product_state.dart';
 import 'package:laza/screens/nav_bar_screen.dart';
 import 'package:laza/widgets/category_card.dart';
+import '../meram/cubits/product_cuibt.dart';
 
 
-void main() {
-  runApp(const App());
-}
 
-class App extends StatelessWidget {
-  const App({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return BlocProvider<NavBarCubit>(
-      create:(context)=> NavBarCubit(),
-      child: MaterialApp(
-        debugShowCheckedModeBanner: false,
-        home: BottomNavBar(),
-      )
-    );
-  }
-}
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -110,15 +95,33 @@ class HomeScreen extends StatelessWidget {
               ),
               SizedBox(
                 height: 40,
-                child: ListView.builder(
-                    scrollDirection: Axis.horizontal,
-                    itemCount: 6,
-                    itemBuilder: ((context, index)
-                    {
-                      return const CategotyCard();
-                    })),
-              ),
-              const Padding(
+                  child: BlocBuilder<ProductCubit,ProductState>(builder: (context,state){
+                    if (state is ProductLoading) {
+                      return Center(
+                        child: CircularProgressIndicator(
+                          color: Color(0xFFE23E3E),
+                        ),
+                      );
+                    }else if (state is ProductError) {
+                      return Center(
+                        child: Text(state.message),
+                      );
+                    }else if (state is ProductLoaded){
+                      return ListView.builder(
+                          scrollDirection: Axis.horizontal,
+                          itemCount: 6,
+                          itemBuilder: (context, index)
+                          {
+                            return  CategotyCard(onTap: (){},product: state.products[index],);
+                          });
+                    }else {
+                      return Center(
+                      child: Text('No Response'),
+                      );
+                    }
+                  }),),
+
+               Padding(
                 padding: EdgeInsets.symmetric(vertical: 8.0),
                 child: Text(
                   'New Product',

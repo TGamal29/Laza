@@ -11,8 +11,7 @@ class BottomNavBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    int _selectedIndex = 0;
-    final _pages = [HomeScreen()];
+
     return Scaffold(
       body: BlocBuilder<NavBarCubit, NavBarState>(
           builder: (context, state) {
